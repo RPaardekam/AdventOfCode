@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/AdventOfCode/v16
+/.vs
+/2020/.vs/AdventOfCode-Powershell/v16
+/2020/obj/Debug
