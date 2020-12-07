@@ -11,17 +11,35 @@ Function FindTotalSum {
         $right
     ) 
 
-    if (([int]$left + [int]$middle + [int]$right) -eq $totalweneed) {
-        Write-Host "We found it! " $left $middle $right
-        Write-Host "Multiplied: " 
-        Write-Host ([int]$left * [int]$middle * [int]$right)
+    # depending on the number of parameters: calculate with 2 or 3 inputs.
+
+    if ($middle -ne $null) {
+        if (([int]$left + [int]$middle + [int]$right) -eq $totalweneed) {
+            Write-Host "We found it! " $left $middle $right
+            Write-Host "Multiplied: " 
+            Write-Host ([int]$left * [int]$middle * [int]$right)
+        }
+    } else {
+        if (([int]$left + [int]$right) -eq $totalweneed) {
+            Write-Host "We found it! " $left $right
+            Write-Host "Multiplied: " 
+            Write-Host ([int]$left * [int]$right)
+        }
     }
 }
 
+# Assignment 1
+ForEach ($singlenumber in $nummers) {
+    Foreach ($othernumber in $nummers) {
+        FindTotalSum -left $singlenumber -right $othernumber
+    } 
+} 
+
+# Assignment 2
 ForEach ($singlenumber in $nummers) {
     Foreach ($othernumber in $nummers) {
         ForEach ($lastnumber in $nummers) {
-            FindTotalSum $singlenumber $othernumber $lastnumber
+            FindTotalSum -left $singlenumber -middle $othernumber -right $lastnumber
         }
-    }    
+    }
 } 
