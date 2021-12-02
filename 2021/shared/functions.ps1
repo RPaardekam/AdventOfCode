@@ -8,3 +8,15 @@ Function Show-Header {
     Write-Output "####################################################################"
 
 }
+
+Function Show-Details {
+    Param (
+        [string]$text, $color
+    )
+
+    $length = ("####################################################################".Length)-4
+    $paddedText = $text.Trim().PadRight($length, ' ')
+
+    Write-Host "# $paddedText #" -ForegroundColor $color
+
+}
