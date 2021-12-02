@@ -1,4 +1,4 @@
-﻿# AdventofCode 2020 - Day 1
+# AdventofCode 2020 - Day 1
 # Answers: 1020084 & 295086480
 
 $nummers = Get-Content -Path E:\source\github\RPaardekam\AdventOfCode\2020\input\2020-day01-input.txt | sort { [int]$_ }

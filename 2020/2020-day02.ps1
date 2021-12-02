@@ -1,7 +1,7 @@
-﻿# AdventofCode 2020 - Day 2
+# AdventofCode 2020 - Day 2
 # Answers: 636 & 588
 
-$passwords = Get-Content -Path E:\source\github\RPaardekam\AdventOfCode\2020\input\2020-day02-input.txt
+$passwords = Get-Content -Path input\2020-day02-input.txt
 $validcounter = 0
 
 # Minimum and maximum supplied in the policy
@@ -72,4 +72,3 @@ ForEach ($passwordline in $passwords) {
 }
 
 write-host "Assignment 2 answer: $validcounter"
-
