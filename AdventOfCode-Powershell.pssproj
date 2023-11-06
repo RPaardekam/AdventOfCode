@@ -30,18 +30,24 @@
     <Compile Include="2020\2020-day03.ps1" />
     <Compile Include="2020\2020-day02.ps1" />
     <Compile Include="2021\day01.ps1" />
+    <Compile Include="2022\day01.ps1" />
+    <Compile Include="shared\functions.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="2020\" />
-	<Folder Include="2020\input\" />
+    <Folder Include="2020\input\" />
     <Folder Include="2021\" />
     <Folder Include="2021\input\" />
+    <Folder Include="2022\" />
+    <Folder Include="2022\input\" />
+    <Folder Include="shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="2020\input\2020-day01-input.txt" />
     <Content Include="2020\input\2020-day02-input.txt" />
     <Content Include="2020\input\2020-day03-input.txt" />
     <Content Include="2021\input\day01.txt" />
+    <Content Include="2022\input\day01.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />
