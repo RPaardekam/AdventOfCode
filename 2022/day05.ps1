@@ -17,7 +17,7 @@ $inputLines = Get-InputData -year 2022 -day 05
 
 class Stack {
     [int]$Number
-    [System.String[]]$Crates
+    [System.Collections.ArrayList]$Crates
 }
 
 class Supplies {
@@ -42,47 +42,47 @@ $Supplies.Stacks = New-Object Stack[] 10
 
 $Stack1 = [Stack]::new()
 $Stack1.Number = 1 
-$Stack1.Crates = @("H", "C", "R")
+$Stack1.Crates = [System.Collections.ArrayList]@("H", "C", "R")
 $Supplies.Stacks[$Stack1.Number] = $Stack1
 
 $Stack2 = [Stack]::new()
 $Stack2.Number = 2 
-$Stack2.Crates = @("B", "J", "H", "L", "S", "F")
+$Stack2.Crates = [System.Collections.ArrayList]@("B", "J", "H", "L", "S", "F")
 $Supplies.Stacks[$Stack2.Number] = $Stack2
 
 $Stack3 = [Stack]::new()
 $Stack3.Number = 3
-$Stack3.Crates = @("R", "M", "D", "H", "J", "T", "Q")
+$Stack3.Crates = [System.Collections.ArrayList]@("R", "M", "D", "H", "J", "T", "Q")
 $Supplies.Stacks[$Stack3.Number] = $Stack3
 
 $Stack4 = [Stack]::new()
 $Stack4.Number = 4
-$Stack4.Crates = @("S", "G", "R", "H", "Z", "B", "J")
+$Stack4.Crates = [System.Collections.ArrayList]@("S", "G", "R", "H", "Z", "B", "J")
 $Supplies.Stacks[$Stack4.Number] = $Stack4
 
 $Stack5 = [Stack]::new()
 $Stack5.Number = 5
-$Stack5.Crates = @("R", "P", "F", "Z", "T", "D", "C", "B")
+$Stack5.Crates = [System.Collections.ArrayList]@("R", "P", "F", "Z", "T", "D", "C", "B")
 $Supplies.Stacks[$Stack5.Number] = $Stack5
 
 $Stack6 = [Stack]::new()
 $Stack6.Number = 6
-$Stack6.Crates = @("T", "H", "C", "G")
+$Stack6.Crates = [System.Collections.ArrayList]@("T", "H", "C", "G")
 $Supplies.Stacks[$Stack6.Number] = $Stack6
 
 $Stack7 = [Stack]::new()
 $Stack7.Number = 7
-$Stack7.Crates = @("S", "N", "V", "Z", "B", "P", "W", "L")
+$Stack7.Crates = [System.Collections.ArrayList]@("S", "N", "V", "Z", "B", "P", "W", "L")
 $Supplies.Stacks[$Stack7.Number] = $Stack7
 
 $Stack8 = [Stack]::new()
 $Stack8.Number = 8
-$Stack8.Crates = @("R", "J", "Q", "G", "C")
+$Stack8.Crates = [System.Collections.ArrayList]@("R", "J", "Q", "G", "C")
 $Supplies.Stacks[$Stack8.Number] = $Stack8
 
 $Stack9 = [Stack]::new()
 $Stack9.Number = 9
-$Stack9.Crates = @("L", "D", "T", "R", "H", "P", "F", "S")
+$Stack9.Crates = [System.Collections.ArrayList]@("L", "D", "T", "R", "H", "P", "F", "S")
 $Supplies.Stacks[$Stack9.Number] = $Stack9
 
 Write-Host $Supplies.Stacks | Out-GridView
@@ -99,7 +99,24 @@ ForEach ($line in $inputLines)
         $actionFrom = $instructionLineAsArray[3]
         $actionTo= $instructionLineAsArray[5]
 
-        #TO DO - Actions on crates.
+        # Actions on crates.
+        if ($actionFrom -ne $null)
+        {
+            for($i=1;$i -le $actionAmount; $i++) {
+                Write-Host "$i van stapel $actionFrom naar stapel $actionTo"
+                # Find the right crate to move 
+                $topCrate = $Supplies.Stacks[$actionFrom].Crates[$Supplies.Stacks[$actionFrom].Crates.Length]
+
+                # Put the crate "top-from-stack" on the "top-to-stack"
+                $Supplies.Stacks[$actionTo].Crates.Add($topCrate)
+
+                # Remove the original crate from the top of the "from-stack"
+                $Supplies.Stacks[$actionFrom].Crates.Remove($Supplies.Stacks[$actionFrom].Crates.Length)
+
+                Write-Host "done $topCrate was removed "
+                Write-Host 'new from-upper ' + $Supplies.Stacks[$actionFrom].Crates.Length
+            }
+        }
     }
     $lineCounter++
 }
